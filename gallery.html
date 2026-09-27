@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manufacturing Gallery | Vastech Cutting Tools</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --dark-green: #032b21;
+            --primary-green: #06402B;
+            --secondary-green: #0A5A3D;
+            --accent-gold: #e6a123;
+            --light-gold: #f4be52;
+            --dark-bg: #021a14;
+            --light-bg: #F4F8F5;
+            --card-border: #E2E8F0;
+            --text-muted: #64748B;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #2D3748;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Top Bar Styling */
+        .top-bar {
+            background-color: var(--dark-green);
+            color: #ffffff;
+            font-size: 0.85rem;
+            padding: 9px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .top-bar a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .top-bar a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Sticky Main Header */
+        .main-navbar {
+            background: #ffffff;
+            transition: all 0.35s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1030;
+        }
+        .main-navbar.sticky-top-active {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+            animation: slideDown 0.35s ease-out;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .navbar-nav .nav-link {
+            color: #2D3748;
+            font-weight: 500;
+            padding: 0.8rem 1rem !important;
+            transition: color 0.2s ease;
+        }
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+            color: var(--primary-green);
+            font-weight: 600;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--light-gold), var(--accent-gold));
+            color: #032b21;
+            font-weight: 700;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(230, 161, 35, 0.25);
+        }
+        .btn-gold:hover {
+            background: linear-gradient(135deg, var(--accent-gold), #cd8c15);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(230, 161, 35, 0.4);
+        }
+
+        /* Hero Page Banner */
+        .page-header {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-green) 60%, var(--secondary-green) 100%);
+            color: #ffffff;
+            position: relative;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(230, 161, 35, 0.15) 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: 0.6;
+        }
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-tag {
+            color: var(--accent-gold);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+        .section-title {
+            color: var(--dark-green);
+            font-weight: 800;
+            font-size: 2.25rem;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+
+        /* Filter Controls Styling */
+        .filter-btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+        .btn-filter {
+            background-color: #ffffff;
+            color: var(--dark-green);
+            border: 1px solid #CBD5E1;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 9px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        .btn-filter:hover, .btn-filter.active {
+            background-color: var(--dark-green);
+            color: var(--accent-gold);
+            border-color: var(--dark-green);
+            box-shadow: 0 4px 12px rgba(3, 43, 33, 0.15);
+        }
+
+        /* Gallery Grid Items */
+        .gallery-item-wrapper {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #000000;
+            height: 280px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border: 1px solid var(--card-border);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+        .gallery-item-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            opacity: 0.92;
+        }
+        .gallery-item-wrapper:hover img {
+            transform: scale(1.1);
+            opacity: 0.6;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(3, 43, 33, 0.1) 0%, rgba(2, 26, 20, 0.92) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.25rem;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            z-index: 2;
+        }
+        .gallery-item-wrapper:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-category-badge {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .gallery-item-title {
+            color: #ffffff;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .zoom-icon-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            color: var(--dark-green);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease;
+        }
+        .zoom-icon-btn:hover {
+            transform: scale(1.15);
+        }
+
+        /* Video Gallery Section */
+        .video-card {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            height: 300px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+            border: 1px solid var(--card-border);
+        }
+        .video-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .video-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(3, 43, 33, 0.65);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            text-align: center;
+            color: #ffffff;
+            transition: background 0.3s ease;
+        }
+        .video-card:hover .video-card-overlay {
+            background: rgba(3, 43, 33, 0.82);
+        }
+
+        .play-btn {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--light-gold), var(--accent-gold));
+            color: var(--dark-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 20px rgba(230, 161, 35, 0.6);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .video-card:hover .play-btn {
+            transform: scale(1.15);
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--secondary-green) 100%);
+            border-radius: 16px;
+            padding: 3.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(230, 161, 35, 0.3);
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: var(--dark-bg);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        .main-footer h5 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 1.25rem;
+            position: relative;
+            padding-bottom: 8px;
+        }
+        .main-footer h5::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 32px;
+            height: 2px;
+            background-color: var(--accent-gold);
+        }
+        .main-footer a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .main-footer a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Scroll Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Modal Lightbox Styling */
+        .modal-lightbox-img {
+            max-height: 75vh;
+            width: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. TOP BAR -->
+    <div class="top-bar">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+            <div class="d-flex align-items-center flex-wrap gap-3">
+                <span><i class="fa-solid fa-location-dot me-1" style="color: var(--accent-gold);"></i> D189 Focal Point, Patiala, Punjab, India</span>
+                <span><i class="fa-solid fa-envelope me-1" style="color: var(--accent-gold);"></i> info@vastechcuttingtools.com</span>
+                <span><i class="fa-solid fa-phone me-1" style="color: var(--accent-gold);"></i> +91 98765 43210</span>
+            </div>
+            <div class="d-flex align-items-center gap-3 mt-1 mt-md-0">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. STICKY MAIN NAVBAR -->
+    <nav class="navbar navbar-expand-lg main-navbar sticky-top" id="mainHeader">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <div class="px-2 py-1 rounded" style="background-color: var(--dark-green); color: var(--accent-gold);">
+                    <i class="fa-solid fa-gears fs-4"></i>
+                </div>
+                <div>
+                    <span class="fw-bold fs-4 d-block lh-1" style="color: var(--dark-green);">VASTECH</span>
+                    <small class="text-uppercase tracking-wider text-muted fw-semibold" style="font-size: 0.65rem;">Cutting Tools</small>
+                </div>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Products</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="index.html#products">Broaches</a></li>
+                            <li><a class="dropdown-item" href="index.html#products">Broaching Machines</a></li>
+                            <li><a class="dropdown-item" href="index.html#products">Spline Rolling Racks</a></li>
+                            <li><a class="dropdown-item" href="index.html#products">Aerospace Broaches</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about.html#infrastructure">Infrastructure</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                </ul>
+                <a href="contact.html#contact-form-section" class="btn btn-gold">Get a Quote <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 3. PAGE HERO BANNER -->
+    <section class="page-header">
+        <div class="container page-header-content text-center">
+            <span class="section-tag">MANUFACTURING EXCELLENCE IN PICTURES</span>
+            <h1 class="display-4 fw-extrabold text-white mb-3">Our Facility & Product Gallery</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white text-decoration-none">Home</a></li>
+                    <li class="breadcrumb-item active" style="color: var(--accent-gold);" aria-current="page">Gallery</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- 4. FILTERABLE GALLERY GRID -->
+    <section class="py-5">
+        <div class="container py-3">
+            <div class="text-center mb-4 animate-on-scroll">
+                <span class="section-tag">EXPLORE OUR PLANT & PRODUCTS</span>
+                <h2 class="section-title">Precision Engineering Visualized</h2>
+                <p class="text-muted mx-auto" style="max-width: 650px;">A glimpse into our CNC grinding floor, quality metrology lab, custom broaching machinery, and global packaging standard.</p>
+            </div>
+
+            <!-- Filter Category Buttons -->
+            <div class="filter-btn-group animate-on-scroll">
+                <button class="btn btn-filter active" data-filter="all">All Photos</button>
+                <button class="btn btn-filter" data-filter="facility">Manufacturing Facility</button>
+                <button class="btn btn-filter" data-filter="machines">Broaching Machines</button>
+                <button class="btn btn-filter" data-filter="tools">Precision Broach Tools</button>
+                <button class="btn btn-filter" data-filter="quality">Quality Control & Testing</button>
+                <button class="btn btn-filter" data-filter="packaging">Export & Packaging</button>
+            </div>
+
+            <!-- Gallery Grid Items (4 Cards Per Row) -->
+            <div class="row g-4" id="galleryGrid">
+                <!-- Item 1 -->
+                <div class="col-lg-3 col-md-6 gallery-col facility animate-on-scroll">
+                    <div class="gallery-item-wrapper">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" alt="CNC Machining Shop Floor">
+                        <div class="gallery-overlay">
+                            <span class="gallery-category-badge">Facility</span>
+                            <h5 class="gallery-item-title">Multi-Axis CNC Grinding Shop</h5>
+                            <div>
+                                <button class="zoom-icon-btn" onclick="openLightbox(0)">
+                                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="col-lg-3 col-md-6 gallery-col tools animate-on-scroll">
+                    <div class="gallery-item-wrapper">
+                        <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80" alt="Spline Broach Tools">
+                        <div class="gallery-overlay">
+                            <span class="gallery-category-badge">Tools</span>
+                            <h5 class="gallery-item-title">Custom Involute Spline Broaches</h5>
+                            <div>
+                                <button class="zoom-icon-btn" onclick="openLightbox(1)">
+                                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="col-lg-3 col-md-6 gallery-col machines animate-on-scroll">
+                    <div class="gallery-item-wrapper">
+                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" alt="Vertical Pull Machine">
+                        <div class="gallery-overlay">
+                            <span class="gallery-category-badge">Broaching Machines</span>
+                            <h5 class="gallery-item-title">Vertical Hydraulic Pull Broaching Rig</h5>
+                            <div>
+                                <button class="zoom-icon-btn" onclick="openLightbox(2)">
+                                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="col-lg-3 col-md-6 gallery-col quality animate-on-scroll">
+                    <div class="gallery-item-wrapper">
+                        <img src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80" alt="Optical Inspection">
+                        <div class="gallery-overlay">
+                            <span class="gallery-category-badge">Quality Control</span>
+                            <h5 class="gallery-item-title">Optical Profile Projector Measurement</h5>
+                            <div>
+                                <button class="zoom-icon-btn" onclick="openLightbox(3)">
+                                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="col-lg-3 col-md-6 gallery-col tools animate-on-scroll">
+                    <div class="gallery-item-wrapper">
+                        <img src="https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&w=600&q=80" alt="Helical Racks">
+                        <div class="gallery-overlay">
+                            <span class="gallery-category-badge">Tools</span>
+                            <h5 class="gallery-item-title">High-Precision Spline Rolling Racks</h5>
+                            <div>
+                                <button class="zoom-icon-btn" onclick="openLightbox(4)">
+                                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="col-lg-3 col-md-6 gallery-col facility animate-on-scroll">
+                    <div class="gallery-item-wrapper">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" alt="Vacuum Heat Treatment">
+                        <div class="gallery-overlay">
+                            <span class="gallery-category-badge">Facility</span>
+                            <h5 class="gallery-item-title">Computerized Vacuum Heat Treatment Furnace</h5>
+                            <div>
+                                <button class="zoom-icon-btn" onclick="openLightbox(5)">
+                                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 7 -->
+                <div class="col-lg-3 col-md-6 gallery-col packaging animate-on-scroll">
+                    <div class="gallery-item-wrapper">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="Export Wooden Crates">
+                        <div class="gallery-overlay">
+                            <span class="gallery-category-badge">Export & Packaging</span>
+                            <h5 class="gallery-item-title">Seaworthy Protective Export Crates</h5>
+                            <div>
+                                <button class="zoom-icon-btn" onclick="openLightbox(6)">
+                                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 8 -->
+                <div class="col-lg-3 col-md-6 gallery-col machines animate-on-scroll">
+                    <div class="gallery-item-wrapper">
+                        <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80" alt="Horizontal Broaching Machine">
+                        <div class="gallery-overlay">
+                            <span class="gallery-category-badge">Broaching Machines</span>
+                            <h5 class="gallery-item-title">Heavy Duty Horizontal Surface Broaching Unit</h5>
+                            <div>
+                                <button class="zoom-icon-btn" onclick="openLightbox(7)">
+                                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. VIDEO SHOWCASE SECTION -->
+    <section class="py-5" style="background-color: var(--light-bg);">
+        <div class="container py-3">
+            <div class="text-center mb-5 animate-on-scroll">
+                <span class="section-tag">VIDEO DEMONSTRATIONS</span>
+                <h2 class="section-title">See Our Broaches In Action</h2>
+                <p class="text-muted mx-auto" style="max-width: 600px;">Watch our high-speed broaching machinery and precision CNC profile grinding operations.</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Video Item 1 -->
+                <div class="col-lg-4 col-md-6 animate-on-scroll">
+                    <div class="video-card">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" alt="CNC Broach Grinding Video">
+                        <div class="video-card-overlay">
+                            <div class="play-btn" onclick="openVideoModal('CNC Broach Profile Grinding Operation')">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                            <h5 class="fw-bold mb-1">CNC Broach Profile Grinding</h5>
+                            <small class="text-warning">02:45 Mins | High-Tech Machining</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Item 2 -->
+                <div class="col-lg-4 col-md-6 animate-on-scroll">
+                    <div class="video-card">
+                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" alt="Internal Spline Broaching Video">
+                        <div class="video-card-overlay">
+                            <div class="play-btn" onclick="openVideoModal('Internal Spline Cutting Demo')">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                            <h5 class="fw-bold mb-1">Internal Gear Spline Cutting</h5>
+                            <small class="text-warning">03:10 Mins | Hydraulic Pull Machine</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Item 3 -->
+                <div class="col-lg-4 col-md-6 animate-on-scroll">
+                    <div class="video-card">
+                        <img src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80" alt="Quality Inspection Video">
+                        <div class="video-card-overlay">
+                            <div class="play-btn" onclick="openVideoModal('100% Optical Quality Inspection')">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                            <h5 class="fw-bold mb-1">100% Optical Pitch Testing</h5>
+                            <small class="text-warning">01:50 Mins | Metrology Inspection Lab</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CTA BANNER -->
+    <section class="py-5">
+        <div class="container py-3">
+            <div class="cta-banner text-center text-white animate-on-scroll">
+                <span class="section-tag mb-2">CUSTOM BROACHING SPECIFICATIONS</span>
+                <h2 class="display-6 fw-bold mb-3 text-white">Need a Specialized Tool Dimension or Machining Quote?</h2>
+                <p class="text-light opacity-90 mx-auto mb-4" style="max-width: 650px;">Send us your component drawings or technical specifications for an instant quotation from our chief engineer.</p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="contact.html#contact-form-section" class="btn btn-gold btn-lg fs-6">Submit Component Drawings <i class="fa-solid fa-paper-plane ms-1"></i></a>
+                    <a href="tel:+919876543210" class="btn btn-outline-light btn-lg fs-6"><i class="fa-solid fa-phone me-1"></i> Call +91 98765 43210</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FOOTER -->
+    <footer class="main-footer pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-lg-3">
+                    <h5 class="text-white">VASTECH</h5>
+                    <p class="small text-muted">Delivering precision cutting tools for a stronger tomorrow. Trusted by industries across the globe since 1984.</p>
+                </div>
+                <div class="col-lg-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled small d-flex flex-column gap-2">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="index.html#products">Products</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5>Our Products</h5>
+                    <ul class="list-unstyled small d-flex flex-column gap-2">
+                        <li><a href="index.html#products">Broaches</a></li>
+                        <li><a href="index.html#products">Broaching Machines</a></li>
+                        <li><a href="index.html#products">Spline Rolling Racks</a></li>
+                        <li><a href="index.html#products">Aerospace Broaches</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5>Contact Us</h5>
+                    <p class="small mb-2"><i class="fa-solid fa-location-dot me-2" style="color: var(--accent-gold);"></i> D189 Focal Point, Patiala, Punjab, India</p>
+                    <p class="small mb-2"><i class="fa-solid fa-phone me-2" style="color: var(--accent-gold);"></i> +91 98765 43210</p>
+                    <p class="small"><i class="fa-solid fa-envelope me-2" style="color: var(--accent-gold);"></i> info@vastechcuttingtools.com</p>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25">
+            <div class="d-flex justify-content-between align-items-center flex-wrap small">
+                <span>© 2026 Vastech Cutting Tools. All Rights Reserved.</span>
+                <span>Precision | Quality | Global Reach</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX IMAGE MODAL -->
+    <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-dark text-white border-0">
+                <div class="modal-header border-bottom border-secondary">
+                    <div>
+                        <h6 class="modal-title fw-bold text-warning" id="lightboxTitle">Image Title</h6>
+                        <small class="text-light opacity-75" id="lightboxCategory">Category</small>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-3">
+                    <img src="" id="lightboxImage" class="modal-lightbox-img img-fluid" alt="Gallery Zoom">
+                </div>
+                <div class="modal-footer border-top border-secondary d-flex justify-content-between">
+                    <button class="btn btn-outline-light btn-sm" onclick="navigateLightbox(-1)"><i class="fa-solid fa-chevron-left me-1"></i> Previous</button>
+                    <button class="btn btn-outline-light btn-sm" onclick="navigateLightbox(1)">Next <i class="fa-solid fa-chevron-right ms-1"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIDEO SHOWCASE MODAL -->
+    <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-dark text-white border-0">
+                <div class="modal-header border-bottom border-secondary">
+                    <h6 class="modal-title fw-bold text-warning" id="videoModalTitle">Video Demonstration</h6>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-4">
+                    <div class="p-5 rounded bg-secondary-subtle text-dark">
+                        <i class="fa-solid fa-circle-play display-1 text-warning mb-3"></i>
+                        <h4 class="fw-bold" id="videoModalDesc">Machine Demo Video</h4>
+                        <p class="text-muted small">Industrial demonstration video player overlay simulation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Gallery Items Dataset for Lightbox Navigation
+        const galleryData = [
+            { img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80", title: "Multi-Axis CNC Grinding Shop", cat: "Manufacturing Facility" },
+            { img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80", title: "Custom Involute Spline Broaches", cat: "Precision Broach Tools" },
+            { img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80", title: "Vertical Hydraulic Pull Broaching Rig", cat: "Broaching Machines" },
+            { img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80", title: "Optical Profile Projector Measurement", cat: "Quality Control & Testing" },
+            { img: "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&w=1200&q=80", title: "High-Precision Spline Rolling Racks", cat: "Precision Broach Tools" },
+            { img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80", title: "Computerized Vacuum Heat Treatment Furnace", cat: "Manufacturing Facility" },
+            { img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80", title: "Seaworthy Protective Export Crates", cat: "Export & Packaging" },
+            { img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80", title: "Heavy Duty Horizontal Surface Broaching Unit", cat: "Broaching Machines" }
+        ];
+
+        let currentLightboxIndex = 0;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Sticky Navigation Bar
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 80) {
+                    header.classList.add('sticky-top-active');
+                } else {
+                    header.classList.remove('sticky-top-active');
+                }
+            });
+
+            // 2. Scroll Animation Observer
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            animatedElements.forEach(el => observer.observe(el));
+
+            // 3. Category Filter Buttons Logic
+            const filterButtons = document.querySelectorAll('.btn-filter');
+            const galleryColumns = document.querySelectorAll('.gallery-col');
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    galleryColumns.forEach(col => {
+                        if (filterValue === 'all' || col.classList.contains(filterValue)) {
+                            col.style.display = 'block';
+                            setTimeout(() => {
+                                col.style.opacity = '1';
+                                col.style.transform = 'scale(1)';
+                            }, 50);
+                        } else {
+                            col.style.opacity = '0';
+                            col.style.transform = 'scale(0.9)';
+                            setTimeout(() => {
+                                col.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        });
+
+        // 4. Lightbox Functions
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            updateLightbox();
+            const lightboxModal = new bootstrap.Modal(document.getElementById('lightboxModal'));
+            lightboxModal.show();
+        }
+
+        function updateLightbox() {
+            const item = galleryData[currentLightboxIndex];
+            document.getElementById('lightboxImage').src = item.img;
+            document.getElementById('lightboxTitle').innerText = item.title;
+            document.getElementById('lightboxCategory').innerText = item.cat;
+        }
+
+        function navigateLightbox(direction) {
+            currentLightboxIndex += direction;
+            if (currentLightboxIndex < 0) {
+                currentLightboxIndex = galleryData.length - 1;
+            } else if (currentLightboxIndex >= galleryData.length) {
+                currentLightboxIndex = 0;
+            }
+            updateLightbox();
+        }
+
+        // 5. Video Modal Function
+        function openVideoModal(title) {
+            document.getElementById('videoModalTitle').innerText = title;
+            document.getElementById('videoModalDesc').innerText = title;
+            const videoModal = new bootstrap.Modal(document.getElementById('videoModal'));
+            videoModal.show();
+        }
+    </script>
+</body>
+</html>

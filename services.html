@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Vastech Cutting Tools - Precision Broaching & Tooling Solutions</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --dark-green: #032b21;
+            --primary-green: #06402B;
+            --secondary-green: #0A5A3D;
+            --accent-gold: #e6a123;
+            --light-gold: #f4be52;
+            --dark-bg: #021a14;
+            --light-bg: #F4F8F5;
+            --card-border: rgba(230, 161, 35, 0.25);
+            --text-muted: #64748B;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #2D3748;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Top Bar Styling */
+        .top-bar {
+            background-color: var(--dark-green);
+            color: #ffffff;
+            font-size: 0.85rem;
+            padding: 9px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .top-bar a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .top-bar a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Sticky Navigation Header */
+        .main-navbar {
+            background: #ffffff;
+            transition: all 0.35s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1030;
+        }
+        .main-navbar.sticky-top-active {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+            animation: slideDown 0.35s ease-out;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .navbar-nav .nav-link {
+            color: #2D3748;
+            font-weight: 500;
+            padding: 0.8rem 1rem !important;
+            transition: color 0.2s ease;
+        }
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+            color: var(--primary-green);
+            font-weight: 600;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--light-gold), var(--accent-gold));
+            color: #032b21;
+            font-weight: 700;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(230, 161, 35, 0.25);
+        }
+        .btn-gold:hover {
+            background: linear-gradient(135deg, var(--accent-gold), #cd8c15);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(230, 161, 35, 0.4);
+        }
+
+        /* Page Banner Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-green) 60%, var(--secondary-green) 100%);
+            color: #ffffff;
+            position: relative;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(230, 161, 35, 0.15) 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: 0.6;
+        }
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Section Title Styling */
+        .section-tag {
+            color: var(--accent-gold);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+        .section-title {
+            color: var(--dark-green);
+            font-weight: 800;
+            font-size: 2.25rem;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+
+        /* PREMIUM SERVICE CARDS WITH BACKGROUND IMAGES (4 per row layout) */
+        .service-bg-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 420px;
+            background-size: cover;
+            background-position: center;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            text-decoration: none;
+            color: #ffffff;
+        }
+        
+        .service-bg-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(3, 43, 33, 0.45) 0%, rgba(2, 26, 20, 0.92) 65%, rgba(1, 15, 11, 0.98) 100%);
+            transition: background 0.4s ease;
+            z-index: 1;
+        }
+
+        .service-bg-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 16px 35px rgba(3, 43, 33, 0.35);
+        }
+
+        .service-bg-card:hover::before {
+            background: linear-gradient(180deg, rgba(3, 43, 33, 0.25) 0%, rgba(2, 26, 20, 0.88) 50%, rgba(3, 43, 33, 0.98) 100%);
+        }
+
+        .service-card-content {
+            position: relative;
+            z-index: 2;
+            padding: 1.5rem;
+            width: 100%;
+        }
+
+        .service-icon-wrapper {
+            width: 52px;
+            height: 52px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(230, 161, 35, 0.2), rgba(244, 190, 82, 0.4));
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .service-bg-card:hover .service-icon-wrapper {
+            transform: scale(1.1);
+            background: var(--accent-gold);
+            color: var(--dark-green);
+        }
+
+        .service-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .service-bg-card:hover .service-title {
+            color: var(--light-gold);
+        }
+
+        .service-desc {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.82);
+            line-height: 1.45;
+            margin-bottom: 1rem;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.25rem 0;
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .service-features li {
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .service-features li i {
+            color: var(--accent-gold);
+            font-size: 0.75rem;
+        }
+
+        .btn-card-action {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(230, 161, 35, 0.4);
+            color: #ffffff;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .service-bg-card:hover .btn-card-action {
+            background: var(--accent-gold);
+            color: var(--dark-green);
+            border-color: var(--accent-gold);
+        }
+
+        /* PROCESS STEPS STYLING */
+        .process-step-card {
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            position: relative;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .process-step-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-green);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.06);
+        }
+
+        .process-badge {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--dark-green);
+            color: var(--accent-gold);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        /* CTA BANNER */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--secondary-green) 100%);
+            border-radius: 16px;
+            padding: 3.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(230, 161, 35, 0.3);
+        }
+
+        /* FOOTER */
+        .main-footer {
+            background-color: var(--dark-bg);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        .main-footer h5 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 1.25rem;
+            position: relative;
+            padding-bottom: 8px;
+        }
+        .main-footer h5::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 32px;
+            height: 2px;
+            background-color: var(--accent-gold);
+        }
+        .main-footer a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .main-footer a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* SCROLL ANIMATION */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. TOP BAR -->
+    <div class="top-bar">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+            <div class="d-flex align-items-center flex-wrap gap-3">
+                <span><i class="fa-solid fa-location-dot me-1" style="color: var(--accent-gold);"></i> D189 Focal Point, Patiala, Punjab, India</span>
+                <span><i class="fa-solid fa-envelope me-1" style="color: var(--accent-gold);"></i> info@vastechcuttingtools.com</span>
+                <span><i class="fa-solid fa-phone me-1" style="color: var(--accent-gold);"></i> +91 98765 43210</span>
+            </div>
+            <div class="d-flex align-items-center gap-3 mt-1 mt-md-0">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. STICKY MAIN NAVBAR -->
+    <nav class="navbar navbar-expand-lg main-navbar sticky-top" id="mainHeader">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <div class="px-2 py-1 rounded" style="background-color: var(--dark-green); color: var(--accent-gold);">
+                    <i class="fa-solid fa-gears fs-4"></i>
+                </div>
+                <div>
+                    <span class="fw-bold fs-4 d-block lh-1" style="color: var(--dark-green);">VASTECH</span>
+                    <small class="text-uppercase tracking-wider text-muted fw-semibold" style="font-size: 0.65rem;">Cutting Tools</small>
+                </div>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="services.html">Services</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Products</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="index.html#products">Broaches</a></li>
+                            <li><a class="dropdown-item" href="index.html#products">Broaching Machines</a></li>
+                            <li><a class="dropdown-item" href="index.html#products">Spline Rolling Racks</a></li>
+                            <li><a class="dropdown-item" href="index.html#products">Aerospace Broaches</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about.html#infrastructure">Infrastructure</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#reviews">Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact Us</a></li>
+                </ul>
+                <a href="index.html#contact" class="btn btn-gold">Get a Quote <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 3. PAGE HEADER BANNER -->
+    <section class="page-header">
+        <div class="container page-header-content text-center">
+            <span class="section-tag">COMPREHENSIVE TOOLING SOLUTIONS</span>
+            <h1 class="display-4 fw-extrabold text-white mb-3">Our Specialized Services</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white text-decoration-none">Home</a></li>
+                    <li class="breadcrumb-item active" style="color: var(--accent-gold);" aria-current="page">Services</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- 4. SERVICES GRID SECTION (4 Cards Per Row) -->
+    <section class="py-5 my-3">
+        <div class="container py-3">
+            <div class="text-center mb-5 animate-on-scroll">
+                <span class="section-tag">WHAT WE OFFER</span>
+                <h2 class="section-title">End-to-End Broaching & Machining Excellence</h2>
+                <p class="text-muted mx-auto" style="max-width: 650px;">From custom tool design and precision multi-axis CNC grinding to re-sharpening and sub-contract broaching support.</p>
+            </div>
+
+            <!-- 8 Cards in 2 rows (4 per row on lg screen) -->
+            <div class="row g-4">
+                <!-- Service Card 1 -->
+                <div class="col-lg-3 col-md-6 col-12 animate-on-scroll">
+                    <div class="service-bg-card" style="background-image: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80');">
+                        <div class="service-card-content">
+                            <div class="service-icon-wrapper"><i class="fa-solid fa-gears"></i></div>
+                            <h3 class="service-title">Custom Broaching Solutions</h3>
+                            <p class="service-desc">Tailor-made broach tool manufacturing for specialized keyway, spline, and serration profiles.</p>
+                            <ul class="service-features">
+                                <li><i class="fa-solid fa-circle-check"></i> Custom Pitch & Profile</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Internal & External Splines</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Sub-micron Tolerances</li>
+                            </ul>
+                            <button class="btn-card-action" onclick="openServiceModal('Custom Broaching Solutions', 'Engineered strictly according to customer component drawings. We manufacture custom push and pull broaches in high-speed steels (M2, M35, M42) and ASP Powder Metallurgy.')">
+                                Inquire Now <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="col-lg-3 col-md-6 col-12 animate-on-scroll">
+                    <div class="service-bg-card" style="background-image: url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80');">
+                        <div class="service-card-content">
+                            <div class="service-icon-wrapper"><i class="fa-solid fa-industry"></i></div>
+                            <h3 class="service-title">Precision Manufacturing</h3>
+                            <p class="service-desc">Advanced multi-axis CNC grinding capabilities ensuring maximum longevity and surface finish.</p>
+                            <ul class="service-features">
+                                <li><i class="fa-solid fa-circle-check"></i> Multi-Axis CNC Grinding</li>
+                                <li><i class="fa-solid fa-circle-check"></i> High Speed Steel Grades</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Vacuum Heat Treated</li>
+                            </ul>
+                            <button class="btn-card-action" onclick="openServiceModal('Precision Manufacturing', 'Utilizing state-of-the-art CNC broach grinders to produce internal and surface broaches with superior dimensional stability.')">
+                                Inquire Now <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="col-lg-3 col-md-6 col-12 animate-on-scroll">
+                    <div class="service-bg-card" style="background-image: url('https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&w=600&q=80');">
+                        <div class="service-card-content">
+                            <div class="service-icon-wrapper"><i class="fa-solid fa-headset"></i></div>
+                            <h3 class="service-title">Technical Support & Advisory</h3>
+                            <p class="service-desc">Expert consultation for broaching machine setups, cutting speed optimization, and tool selection.</p>
+                            <ul class="service-features">
+                                <li><i class="fa-solid fa-circle-check"></i> On-Site Troubleshooting</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Cycle Time Optimization</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Material Selection Guidance</li>
+                            </ul>
+                            <button class="btn-card-action" onclick="openServiceModal('Technical Support & Advisory', 'Our team of engineers assists in analyzing chip load, selecting optimum cutting fluids, and resolving machine chatter or tool wear issues.')">
+                                Inquire Now <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="col-lg-3 col-md-6 col-12 animate-on-scroll">
+                    <div class="service-bg-card" style="background-image: url('https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80');">
+                        <div class="service-card-content">
+                            <div class="service-icon-wrapper"><i class="fa-solid fa-earth-americas"></i></div>
+                            <h3 class="service-title">Export & Global Supply</h3>
+                            <p class="service-desc">Seamless export handling and international logistics to deliver high-quality tools worldwide.</p>
+                            <ul class="service-features">
+                                <li><i class="fa-solid fa-circle-check"></i> Global Freight Logistics</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Seaworthy Packaging</li>
+                                <li><i class="fa-solid fa-circle-check"></i> International Compliance</li>
+                            </ul>
+                            <button class="btn-card-action" onclick="openServiceModal('Export & Global Supply', 'We supply high-precision broaches to clients in Europe, North America, Middle East, and Asia with complete shipping documentation.')">
+                                Inquire Now <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 5 -->
+                <div class="col-lg-3 col-md-6 col-12 animate-on-scroll">
+                    <div class="service-bg-card" style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80');">
+                        <div class="service-card-content">
+                            <div class="service-icon-wrapper"><i class="fa-solid fa-file-contract"></i></div>
+                            <h3 class="service-title">Sub-Contract Broaching</h3>
+                            <p class="service-desc">Outsourced job-work broaching services on specialized internal and surface broaching machines.</p>
+                            <ul class="service-features">
+                                <li><i class="fa-solid fa-circle-check"></i> High Volume Job Production</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Vertical & Horizontal Pull</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Rapid Turnaround Time</li>
+                            </ul>
+                            <button class="btn-card-action" onclick="openServiceModal('Sub-Contract Broaching', 'High-capacity production facility capable of executing large batch production of splines, keyways, and internal gears for automotive tier-1 suppliers.')">
+                                Inquire Now <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 6 -->
+                <div class="col-lg-3 col-md-6 col-12 animate-on-scroll">
+                    <div class="service-bg-card" style="background-image: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80');">
+                        <div class="service-card-content">
+                            <div class="service-icon-wrapper"><i class="fa-solid fa-rotate"></i></div>
+                            <h3 class="service-title">Tool Re-sharpening & Repair</h3>
+                            <p class="service-desc">Precision regrinding and recoating services to restore worn broaches to OEM performance specs.</p>
+                            <ul class="service-features">
+                                <li><i class="fa-solid fa-circle-check"></i> Original Geometry Restored</li>
+                                <li><i class="fa-solid fa-circle-check"></i> TiN / TiAlN PVD Coating</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Extends Tool Lifespan</li>
+                            </ul>
+                            <button class="btn-card-action" onclick="openServiceModal('Tool Re-sharpening & Repair', 'Regrinding service that restores exact cutting hook angles and pitch accuracy, followed by specialized PVD recoating to double tool life.')">
+                                Inquire Now <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 7 -->
+                <div class="col-lg-3 col-md-6 col-12 animate-on-scroll">
+                    <div class="service-bg-card" style="background-image: url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80');">
+                        <div class="service-card-content">
+                            <div class="service-icon-wrapper"><i class="fa-solid fa-microscope"></i></div>
+                            <h3 class="service-title">Quality Inspection & QA</h3>
+                            <p class="service-desc">Comprehensive metrology inspection using optical profile projectors and gear lead testing tools.</p>
+                            <ul class="service-features">
+                                <li><i class="fa-solid fa-circle-check"></i> 100% Tooth-by-Tooth Check</li>
+                                <li><i class="fa-solid fa-circle-check"></i> CMM & Optical Scans</li>
+                                <li><i class="fa-solid fa-circle-check"></i> QA Certification Provided</li>
+                            </ul>
+                            <button class="btn-card-action" onclick="openServiceModal('Quality Inspection & QA', 'State-of-the-art metrology lab providing detailed pitch deviation, gullet radius, and surface finish measurement reports for zero defect assurance.')">
+                                Inquire Now <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 8 -->
+                <div class="col-lg-3 col-md-6 col-12 animate-on-scroll">
+                    <div class="service-bg-card" style="background-image: url('https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&w=600&q=80');">
+                        <div class="service-card-content">
+                            <div class="service-icon-wrapper"><i class="fa-solid fa-compass-drafting"></i></div>
+                            <h3 class="service-title">Custom Tool CAD/CAM Design</h3>
+                            <p class="service-desc">3D tooth profile simulation and mathematical modeling for complex broach geometries.</p>
+                            <ul class="service-features">
+                                <li><i class="fa-solid fa-circle-check"></i> 3D Solid Modeling</li>
+                                <li><i class="fa-solid fa-circle-check"></i> FEA Stress Analysis</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Chip Formation Simulation</li>
+                            </ul>
+                            <button class="btn-card-action" onclick="openServiceModal('Custom Tool CAD/CAM Design', 'Advanced 3D modeling using specialized software to design chip breakers, rake angles, and rise-per-tooth for optimum cutting force distribution.')">
+                                Inquire Now <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. OUR SERVICE PROCESS SECTION -->
+    <section class="py-5" style="background-color: var(--light-bg);">
+        <div class="container py-3">
+            <div class="text-center mb-5 animate-on-scroll">
+                <span class="section-tag">HOW WE WORK</span>
+                <h2 class="section-title">Our Service Execution Workflow</h2>
+                <p class="text-muted mx-auto" style="max-width: 600px;">A structured 4-step engineering workflow ensuring seamless delivery and quality assurance.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 animate-on-scroll">
+                    <div class="process-step-card">
+                        <div class="process-badge">01</div>
+                        <h5 class="fw-bold mb-2" style="color: var(--dark-green);">Requirement Analysis</h5>
+                        <p class="text-muted small mb-0">Study component drawings, material hardness, machine specs, and required cycle times.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 animate-on-scroll">
+                    <div class="process-step-card">
+                        <div class="process-badge">02</div>
+                        <h5 class="fw-bold mb-2" style="color: var(--dark-green);">CAD/CAM Design</h5>
+                        <p class="text-muted small mb-0">Develop 3D broach profiles, calculate rise-per-tooth, and simulate chip gullet room.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 animate-on-scroll">
+                    <div class="process-step-card">
+                        <div class="process-badge">03</div>
+                        <h5 class="fw-bold mb-2" style="color: var(--dark-green);">Precision CNC Grinding</h5>
+                        <p class="text-muted small mb-0">Execute multi-axis CNC grinding on imported HSS or Powder Metallurgy blanks.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 animate-on-scroll">
+                    <div class="process-step-card">
+                        <div class="process-badge">04</div>
+                        <h5 class="fw-bold mb-2" style="color: var(--dark-green);">Metrology & Dispatch</h5>
+                        <p class="text-muted small mb-0">100% optical inspection, PVD coating application, and seaworthy protective packing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FLOATING CTA BANNER -->
+    <section class="py-5">
+        <div class="container py-3">
+            <div class="cta-banner text-center text-white animate-on-scroll">
+                <span class="section-tag mb-2">HAVE A CUSTOM REQUIREMENT?</span>
+                <h2 class="display-6 fw-bold mb-3 text-white">Let’s Engineer the Perfect Broaching Tool for You</h2>
+                <p class="text-light opacity-90 mx-auto mb-4" style="max-width: 650px;">Send us your component drawings or technical requirements to receive an accurate quote within 24 hours.</p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="index.html#contact" class="btn btn-gold btn-lg fs-6">Submit RFQ / Enquiry <i class="fa-solid fa-paper-plane ms-1"></i></a>
+                    <a href="tel:+919876543210" class="btn btn-outline-light btn-lg fs-6"><i class="fa-solid fa-phone me-1"></i> Speak with Engineer</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FOOTER -->
+    <footer class="main-footer pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-lg-3">
+                    <h5 class="text-white">VASTECH</h5>
+                    <p class="small text-muted">Delivering precision cutting tools for a stronger tomorrow. Trusted by industries across the globe since 1984.</p>
+                </div>
+                <div class="col-lg-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled small d-flex flex-column gap-2">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="index.html#products">Products</a></li>
+                        <li><a href="index.html#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5>Our Services</h5>
+                    <ul class="list-unstyled small d-flex flex-column gap-2">
+                        <li><a href="services.html">Custom Broach Design</a></li>
+                        <li><a href="services.html">CNC Profile Grinding</a></li>
+                        <li><a href="services.html">Sub-Contract Broaching</a></li>
+                        <li><a href="services.html">Tool Regrinding & Coating</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5>Contact Us</h5>
+                    <p class="small mb-2"><i class="fa-solid fa-location-dot me-2" style="color: var(--accent-gold);"></i> D189 Focal Point, Patiala, Punjab, India</p>
+                    <p class="small mb-2"><i class="fa-solid fa-phone me-2" style="color: var(--accent-gold);"></i> +91 98765 43210</p>
+                    <p class="small"><i class="fa-solid fa-envelope me-2" style="color: var(--accent-gold);"></i> info@vastechcuttingtools.com</p>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25">
+            <div class="d-flex justify-content-between align-items-center flex-wrap small">
+                <span>© 2026 Vastech Cutting Tools. All Rights Reserved.</span>
+                <span>Precision | Quality | Global Reach</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SERVICE INQUIRY MODAL -->
+    <div class="modal fade" id="serviceModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header text-white" style="background: var(--dark-green);">
+                    <h5 class="modal-header-title fw-bold mb-0" id="modalServiceTitle">Service Title</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-muted small mb-4" id="modalServiceDesc"></p>
+                    <a href="index.html#contact" class="btn btn-gold w-100">Proceed to Contact & Request Quote <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Sticky Main Navbar
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 80) {
+                    header.classList.add('sticky-top-active');
+                } else {
+                    header.classList.remove('sticky-top-active');
+                }
+            });
+
+            // 2. Scroll Animation Observer
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            animatedElements.forEach(el => observer.observe(el));
+        });
+
+        // 3. Service Detail Modal Handler
+        function openServiceModal(title, description) {
+            document.getElementById('modalServiceTitle').innerText = title;
+            document.getElementById('modalServiceDesc').innerText = description;
+            const modal = new bootstrap.Modal(document.getElementById('serviceModal'));
+            modal.show();
+        }
+    </script>
+</body>
+</html>

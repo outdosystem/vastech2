@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vastech Cutting Tools - World Class Broaching Solutions</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-green: #06402B;
+            --secondary-green: #0A5A3D;
+            --accent-gold: #D4AF37;
+            --light-gold: #E8C860;
+            --dark-bg: #032116;
+            --light-bg: #F4F8F5;
+            --card-border: #E2E8F0;
+            --text-muted: #64748B;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333333;
+            overflow-x: hidden;
+        }
+
+        /* Top Bar Styling */
+        .top-bar {
+            background-color: var(--primary-green);
+            color: #ffffff;
+            font-size: 0.85rem;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .top-bar a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .top-bar a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Sticky Header */
+        .main-navbar {
+            background: #ffffff;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1030;
+        }
+        .main-navbar.sticky-top-active {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+            animation: slideDown 0.35s ease-out;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        /* Navigation Links */
+        .navbar-nav .nav-link {
+            color: #2D3748;
+            font-weight: 500;
+            padding: 0.8rem 1rem !important;
+            transition: color 0.2s ease;
+        }
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+            color: var(--primary-green);
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, var(--light-gold), var(--accent-gold));
+            color: #000000;
+            font-weight: 600;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            background: linear-gradient(135deg, var(--accent-gold), #b89528);
+            color: #000;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Carousel Section */
+        .hero-section {
+            position: relative;
+            background-color: #000;
+        }
+        .hero-slide {
+            height: 75vh;
+            min-height: 520px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(3, 33, 22, 0.92) 0%, rgba(3, 33, 22, 0.65) 50%, rgba(0,0,0,0.3) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: #ffffff;
+        }
+        .hero-subtitle {
+            color: var(--light-gold);
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* Accent Lines Decor */
+        .hero-accent-bar {
+            height: 4px;
+            width: 60px;
+            background-color: var(--accent-gold);
+            margin-bottom: 15px;
+        }
+
+        /* Section Title Styling */
+        .section-tag {
+            color: var(--primary-green);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+        }
+        .section-title {
+            color: #1A202C;
+            font-weight: 800;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Cards & Hover Effects */
+        .custom-card {
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            background: #ffffff;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .custom-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary-green);
+        }
+        .service-icon-box {
+            width: 65px;
+            height: 65px;
+            background-color: rgba(6, 64, 43, 0.08);
+            color: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin: 0 auto 1.2rem auto;
+            transition: all 0.3s ease;
+        }
+        .custom-card:hover .service-icon-box {
+            background-color: var(--primary-green);
+            color: var(--accent-gold);
+        }
+
+        /* Product Cards */
+        .product-card {
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .product-card img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+            transition: transform 0.4s ease;
+        }
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+        .product-card-body {
+            padding: 1.25rem;
+            position: relative;
+        }
+        .arrow-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--light-bg);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+            transition: all 0.2s ease;
+        }
+        .product-card:hover .arrow-btn {
+            background: var(--primary-green);
+            color: #ffffff;
+        }
+
+        /* Why Choose Us Grid Cards */
+        .advantage-card {
+            background: #ffffff;
+            border: 1px solid #edf2f7;
+            padding: 1.25rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
+        }
+        .advantage-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-gold);
+        }
+        .advantage-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary-green);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        /* Review Cards */
+        .review-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            height: 100%;
+            position: relative;
+        }
+        .google-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #ffffff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #4285F4;
+        }
+
+        /* Contact Section Dark Styling */
+        .contact-section {
+            background-color: var(--dark-bg);
+            color: #ffffff;
+        }
+        .contact-form .form-control, .contact-form .form-select {
+            background-color: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .contact-form .form-control::placeholder {
+            color: #a0aec0;
+        }
+        .contact-form .form-control:focus, .contact-form .form-select:focus {
+            background-color: rgba(255, 255, 255, 0.12);
+            border-color: var(--accent-gold);
+            color: #ffffff;
+            box-shadow: none;
+        }
+
+        .contact-icon-badge {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--light-gold), var(--accent-gold));
+            color: #032116;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.25);
+        }
+
+        /* Map Banner Overlay */
+        .map-container {
+            position: relative;
+            height: 350px;
+            width: 100%;
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .map-overlay-card {
+            position: absolute;
+            top: 20px;
+            left: 5%;
+            background: var(--dark-bg);
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            z-index: 10;
+            max-width: 320px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-left: 4px solid var(--accent-gold);
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: #02170f;
+            color: #a0aec0;
+            font-size: 0.9rem;
+        }
+        .main-footer h5 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 1.25rem;
+            position: relative;
+            padding-bottom: 8px;
+        }
+        .main-footer h5::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--accent-gold);
+        }
+        .main-footer a {
+            color: #a0aec0;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .main-footer a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Scroll Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. TOP BAR -->
+    <div class="top-bar">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+            <div class="d-flex align-items-center flex-wrap gap-3">
+                <span><i class="fa-solid fa-location-dot text-warning me-1"></i> D189 Focal Point, Patiala, Punjab, India</span>
+                <span><i class="fa-solid fa-envelope text-warning me-1"></i> info@vastechcuttingtools.com</span>
+                <span><i class="fa-solid fa-phone text-warning me-1"></i> +91 98765 43210</span>
+            </div>
+            <div class="d-flex align-items-center gap-3 mt-1 mt-md-0">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. HEADER / NAVIGATION BAR -->
+    <nav class="navbar navbar-expand-lg main-navbar sticky-top" id="mainHeader">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <div class="bg-dark text-warning fw-bold px-2 py-1 rounded">
+                    <i class="fa-solid fa-gears fs-4"></i>
+                </div>
+                <div>
+                    <span class="fw-bold fs-4 d-block lh-1" style="color: var(--primary-green);">VASTECH</span>
+                    <small class="text-uppercase tracking-wider fs-7 text-muted fw-semibold" style="font-size: 0.65rem;">Cutting Tools</small>
+                </div>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <!-- <li class="nav-item"><a class="nav-link active" href="#">Home</a></li> -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#products" role="button" data-bs-toggle="dropdown">Home</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="index.html">Home</a></li>
+                            <!-- <li><a class="dropdown-item" href="#products">Broaching Machines</a></li> -->
+                            <!-- <li><a class="dropdown-item" href="#products">Spline Rolling Racks</a></li> -->
+                            <!-- <li><a class="dropdown-item" href="#products">Aerospace Broaches</a></li> -->
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#products" role="button" data-bs-toggle="dropdown">Products</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#products">Broaches</a></li>
+                            <li><a class="dropdown-item" href="#products">Broaching Machines</a></li>
+                            <li><a class="dropdown-item" href="#products">Spline Rolling Racks</a></li>
+                            <li><a class="dropdown-item" href="#products">Aerospace Broaches</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#infrastructure">Infrastructure</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#reviews">Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                </ul>
+                <a href="#contact" class="btn btn-gold">Get a Quote <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 3. HERO SLIDER -->
+    <section class="hero-section">
+        <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-indicators mb-4">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+            </div>
+            
+            <div class="carousel-inner">
+                <!-- Slide 1 -->
+                <div class="carousel-item active hero-slide" style="background-image: url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1600&q=80');">
+                    <div class="hero-overlay"></div>
+                    <div class="container h-100 d-flex align-items-center hero-content">
+                        <div class="col-lg-7 animate-on-scroll">
+                            <span class="hero-subtitle">Precision | Quality | Innovation</span>
+                            <div class="hero-accent-bar my-2"></div>
+                            <h1 class="display-4 fw-extrabold mb-3 text-white">World Class<br><span style="color: var(--light-gold);">Broaching Solutions</span></h1>
+                            <p class="lead text-light mb-4 opacity-90">Manufacturing High-Performance Broaches for Global Industries Since 1984.</p>
+                            <div class="d-flex gap-3 flex-wrap">
+                                <a href="#products" class="btn btn-gold btn-lg fs-6">Explore Our Products <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                                <a href="#contact" class="btn btn-outline-light btn-lg fs-6">Contact Us <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-item hero-slide" style="background-image: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1600&q=80');">
+                    <div class="hero-overlay"></div>
+                    <div class="container h-100 d-flex align-items-center hero-content">
+                        <div class="col-lg-7">
+                            <span class="hero-subtitle">High Performance Tools</span>
+                            <div class="hero-accent-bar my-2"></div>
+                            <h1 class="display-4 fw-extrabold mb-3 text-white">Precision in<br><span style="color: var(--light-gold);">Every Cut</span></h1>
+                            <p class="lead text-light mb-4 opacity-90">Engineered with extreme accuracy and premium grade high-speed steel materials.</p>
+                            <div class="d-flex gap-3 flex-wrap">
+                                <a href="#products" class="btn btn-gold btn-lg fs-6">Explore Our Products <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                                <a href="#contact" class="btn btn-outline-light btn-lg fs-6">Contact Us <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide-to="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </section>
+
+    <!-- 4. ABOUT SECTION -->
+    <section class="py-5 my-4" id="about">
+        <div class="container py-3">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 animate-on-scroll">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="Vastech Facility" class="img-fluid rounded-3 shadow-lg w-full">
+                        <div class="position-absolute bottom-0 start-0 bg-dark text-white p-3 rounded-end shadow-sm d-none d-sm-block">
+                            <div class="fw-bold text-warning fs-4">40+ Years</div>
+                            <small class="text-uppercase tracking-wider">Manufacturing Excellence</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 animate-on-scroll">
+                    <span class="section-tag">About Vastech Cutting Tools</span>
+                    <h2 class="section-title">Precision Engineering for Superior Performance</h2>
+                    <p class="text-muted mb-4">
+                        Vastech Cutting Tools is a trusted manufacturer of high-quality broaches, serving industries across India and abroad. With decades of experience since 1984, we specialize in designing and manufacturing precision broaches and cutting tools for a wide range of applications.
+                    </p>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-success fs-5"></i>
+                                <span class="fw-semibold">Over 40+ Years of Experience</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-success fs-5"></i>
+                                <span class="fw-semibold">Advanced Manufacturing Facility</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-success fs-5"></i>
+                                <span class="fw-semibold">Expert Quality Products</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-success fs-5"></i>
+                                <span class="fw-semibold">Customer-Centric Approach</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#about" class="btn btn-dark px-4 py-2" style="background-color: var(--primary-green);">Learn More <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. OUR SERVICES SECTION -->
+    <section class="py-5" id="services" style="background-color: var(--light-bg);">
+        <div class="container py-3">
+            <div class="text-center mb-5 animate-on-scroll">
+                <span class="section-tag">Our Services</span>
+                <h2 class="section-title">What We Do</h2>
+                <p class="text-muted mx-auto" style="max-width: 600px;">We provide comprehensive solutions for all your broaching needs.</p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <!-- Service 1 -->
+                <div class="col-md-4 col-lg-2-4 animate-on-scroll">
+                    <div class="custom-card p-4 text-center h-100">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-gears"></i>
+                        </div>
+                        <h5 class="fw-bold fs-6 mb-2">Custom Broaching Solutions</h5>
+                        <p class="text-muted small mb-0">As per your specifications</p>
+                    </div>
+                </div>
+                <!-- Service 2 -->
+                <div class="col-md-4 col-lg-2-4 animate-on-scroll">
+                    <div class="custom-card p-4 text-center h-100">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-industry"></i>
+                        </div>
+                        <h5 class="fw-bold fs-6 mb-2">Precision Manufacturing</h5>
+                        <p class="text-muted small mb-0">High accuracy & durability</p>
+                    </div>
+                </div>
+                <!-- Service 3 -->
+                <div class="col-md-4 col-lg-2-4 animate-on-scroll">
+                    <div class="custom-card p-4 text-center h-100">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <h5 class="fw-bold fs-6 mb-2">Technical Support</h5>
+                        <p class="text-muted small mb-0">Expert guidance at every step</p>
+                    </div>
+                </div>
+                <!-- Service 4 -->
+                <div class="col-md-4 col-lg-2-4 animate-on-scroll">
+                    <div class="custom-card p-4 text-center h-100">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-earth-americas"></i>
+                        </div>
+                        <h5 class="fw-bold fs-6 mb-2">Export & Global Supply</h5>
+                        <p class="text-muted small mb-0">Worldwide delivery</p>
+                    </div>
+                </div>
+                <!-- Service 5 -->
+                <div class="col-md-4 col-lg-2-4 animate-on-scroll">
+                    <div class="custom-card p-4 text-center h-100">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-file-contract"></i>
+                        </div>
+                        <h5 class="fw-bold fs-6 mb-2">Sub Contract Broaching</h5>
+                        <p class="text-muted small mb-0">For various Industries</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. OUR PRODUCTS SECTION -->
+    <section class="py-5" id="products">
+        <div class="container py-3">
+            <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2 animate-on-scroll">
+                <div>
+                    <span class="section-tag">Our Products</span>
+                    <h2 class="section-title mb-0">Our Premium Products</h2>
+                    <p class="text-muted mb-0">We manufacture a wide range of broaches and broaching machines.</p>
+                </div>
+                <a href="#products" class="btn btn-outline-dark border-2 fw-semibold px-4">View All Products <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+
+            <div class="row g-4">
+                <!-- Product 1 -->
+                <div class="col-md-6 col-lg-3 animate-on-scroll">
+                    <div class="product-card h-100">
+                        <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=500&q=80" alt="Broaches">
+                        <div class="product-card-body d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="fw-bold fs-6 mb-1">Broaches</h5>
+                                <p class="text-muted small mb-0">Square, Keyway, Spline, Serration & more</p>
+                            </div>
+                            <span class="arrow-btn"><i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="col-md-6 col-lg-3 animate-on-scroll">
+                    <div class="product-card h-100">
+                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=500&q=80" alt="Broaching Machines">
+                        <div class="product-card-body d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="fw-bold fs-6 mb-1">Broaching Machines</h5>
+                                <p class="text-muted small mb-0">Vertical, Surface, Pull Type, Horizontal etc.</p>
+                            </div>
+                            <span class="arrow-btn"><i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="col-md-6 col-lg-3 animate-on-scroll">
+                    <div class="product-card h-100">
+                        <img src="https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&w=500&q=80" alt="Spline Rolling Racks">
+                        <div class="product-card-body d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="fw-bold fs-6 mb-1">Spline Rolling Racks</h5>
+                                <p class="text-muted small mb-0">High precision spline rolling racks</p>
+                            </div>
+                            <span class="arrow-btn"><i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="col-md-6 col-lg-3 animate-on-scroll">
+                    <div class="product-card h-100">
+                        <img src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=500&q=80" alt="Aerospace Broaches">
+                        <div class="product-card-body d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="fw-bold fs-6 mb-1">Aerospace Broaches</h5>
+                                <p class="text-muted small mb-0">For advanced engineering needs</p>
+                            </div>
+                            <span class="arrow-btn"><i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. WHY CHOOSE US SECTION -->
+    <section class="py-5" style="background-color: #fafbfc;">
+        <div class="container py-3">
+            <div class="row g-4 align-items-stretch">
+                <!-- Left Overlay Image Card -->
+                <div class="col-lg-5 animate-on-scroll">
+                    <div class="position-relative h-100 rounded-3 overflow-hidden shadow-sm" style="min-height: 350px;">
+                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" class="w-100 h-100 object-fit-cover" alt="Advantage">
+                        <div class="position-absolute inset-0 bg-dark opacity-50"></div>
+                        <div class="position-absolute bottom-0 start-0 p-4 text-white">
+                            <span class="badge bg-warning text-dark mb-2 fw-bold">WHY CHOOSE US</span>
+                            <h3 class="fw-bold">The Vastech Advantage</h3>
+                            <p class="small text-light opacity-80 mb-0">Precision | Performance | Reliability</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right 6 Advantage Cards -->
+                <div class="col-lg-7">
+                    <div class="row g-3">
+                        <div class="col-md-6 animate-on-scroll">
+                            <div class="advantage-card">
+                                <div class="advantage-icon"><i class="fa-solid fa-award"></i></div>
+                                <div>
+                                    <h6 class="fw-bold mb-1">40+ Years</h6>
+                                    <small class="text-muted">of Experience</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 animate-on-scroll">
+                            <div class="advantage-card">
+                                <div class="advantage-icon"><i class="fa-solid fa-building-circle-check"></i></div>
+                                <div>
+                                    <h6 class="fw-bold mb-1">State-of-the-Art</h6>
+                                    <small class="text-muted">Infrastructure</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 animate-on-scroll">
+                            <div class="advantage-card">
+                                <div class="advantage-icon"><i class="fa-solid fa-layer-group"></i></div>
+                                <div>
+                                    <h6 class="fw-bold mb-1">High Quality</h6>
+                                    <small class="text-muted">Raw Materials</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 animate-on-scroll">
+                            <div class="advantage-card">
+                                <div class="advantage-icon"><i class="fa-solid fa-users"></i></div>
+                                <div>
+                                    <h6 class="fw-bold mb-1">Skilled & Experienced</h6>
+                                    <small class="text-muted">Team</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 animate-on-scroll">
+                            <div class="advantage-card">
+                                <div class="advantage-icon"><i class="fa-solid fa-clock"></i></div>
+                                <div>
+                                    <h6 class="fw-bold mb-1">On-Time Delivery</h6>
+                                    <small class="text-muted">Guaranteed</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 animate-on-scroll">
+                            <div class="advantage-card">
+                                <div class="advantage-icon"><i class="fa-solid fa-tags"></i></div>
+                                <div>
+                                    <h6 class="fw-bold mb-1">Competitive</h6>
+                                    <small class="text-muted">Pricing</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. OUR GALLERY SECTION -->
+    <section class="py-5" id="gallery">
+        <div class="container py-3">
+            <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2 animate-on-scroll">
+                <div>
+                    <span class="section-tag">Our Gallery</span>
+                    <h2 class="section-title mb-0">Explore Our Manufacturing Excellence</h2>
+                </div>
+                <a href="#gallery" class="btn btn-outline-dark border-2 fw-semibold px-4">View Gallery <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+
+            <!-- Gallery Carousel -->
+            <div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-3 h-100 object-fit-cover" alt="Gallery 1">
+                            </div>
+                            <div class="col-md-4">
+                                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-3 h-100 object-fit-cover" alt="Gallery 2">
+                            </div>
+                            <div class="col-md-4">
+                                <img src="https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-3 h-100 object-fit-cover" alt="Gallery 3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. GOOGLE REVIEWS SECTION -->
+    <section class="py-5" id="reviews" style="background-color: var(--light-bg);">
+        <div class="container py-3">
+            <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2 animate-on-scroll">
+                <div>
+                    <span class="section-tag">Google Reviews</span>
+                    <h2 class="section-title mb-0">What Our Clients Say</h2>
+                </div>
+                <a href="#" class="btn btn-outline-dark border-2 fw-semibold px-4">View More Reviews <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+
+            <div class="row g-4">
+                <!-- Review 1 -->
+                <div class="col-md-4 animate-on-scroll">
+                    <div class="review-card">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="google-badge"><i class="fa-brands fa-google"></i></div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Rajesh Kumar</h6>
+                                <div class="text-warning small">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-muted small mb-3">Excellent quality broaches and timely delivery. Highly recommended!</p>
+                        <span class="badge bg-light text-dark border"><i class="fa-solid fa-circle-check text-success me-1"></i> Verified Customer</span>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="col-md-4 animate-on-scroll">
+                    <div class="review-card">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="google-badge"><i class="fa-brands fa-google"></i></div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Amit Sharma</h6>
+                                <div class="text-warning small">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-muted small mb-3">Very professional team and best manufacturing standards. Keep it up!</p>
+                        <span class="badge bg-light text-dark border"><i class="fa-solid fa-circle-check text-success me-1"></i> Verified Customer</span>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="col-md-4 animate-on-scroll">
+                    <div class="review-card">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="google-badge"><i class="fa-brands fa-google"></i></div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Neha Verma</h6>
+                                <div class="text-warning small">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-muted small mb-3">Great products with precision and reliable service. Will work again!</p>
+                        <span class="badge bg-light text-dark border"><i class="fa-solid fa-circle-check text-success me-1"></i> Verified Customer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. CONTACT US SECTION -->
+    <section class="contact-section py-5" id="contact">
+        <div class="container py-3">
+            <div class="row g-5">
+                <div class="col-lg-5 animate-on-scroll">
+                    <span class="text-warning fw-bold text-uppercase fs-7">GET IN TOUCH</span>
+                    <h2 class="fw-bold text-white mb-3">Contact Us</h2>
+                    <p class="text-light opacity-75 mb-4">We are here to help you with your requirements, quotations and any technical support you may need.</p>
+                    
+                    <div class="d-flex flex-column gap-3">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="contact-icon-badge"><i class="fa-solid fa-location-dot"></i></div>
+                            <span class="text-white fw-medium">D189 Focal Point, Patiala, Punjab, India</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="contact-icon-badge"><i class="fa-solid fa-phone"></i></div>
+                            <span class="text-white fw-medium">+91 98765 43210</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="contact-icon-badge"><i class="fa-solid fa-envelope"></i></div>
+                            <span class="text-white fw-medium">info@vastechcuttingtools.com</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="contact-icon-badge"><i class="fa-solid fa-clock"></i></div>
+                            <span class="text-white fw-medium">Mon - Sat: 9:00 AM - 6:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7 animate-on-scroll">
+                    <form class="contact-form row g-3" id="quoteForm">
+                        <div class="col-md-6">
+                            <label class="form-label text-light small">Your Name *</label>
+                            <input type="text" class="form-control" placeholder="Enter your name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-light small">Email Address *</label>
+                            <input type="email" class="form-control" placeholder="Enter your email" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-light small">Phone Number *</label>
+                            <input type="tel" class="form-control" placeholder="Enter your phone" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-light small">Select Product *</label>
+                            <select class="form-select" required>
+                                <option value="" selected disabled>Select Product</option>
+                                <option>Broaches</option>
+                                <option>Broaching Machines</option>
+                                <option>Spline Rolling Racks</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label text-light small">Your Message *</label>
+                            <textarea class="form-control" rows="4" placeholder="Write your message here..." required></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-gold w-100 py-3">Send Message <i class="fa-solid fa-paper-plane ms-1"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. MAP SECTION -->
+    <section class="position-relative">
+        <div class="map-container">
+            <iframe src="https://maps.google.com/maps?q=Patiala,%20Punjab,%20India&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+            <div class="map-overlay-card">
+                <h6 class="fw-bold mb-1">VASTECH CUTTING TOOLS</h6>
+                <p class="small mb-3">D189 Focal Point, Patiala, Punjab, India</p>
+                <a href="https://maps.google.com" target="_blank" class="btn btn-gold btn-sm w-100">Get Directions <i class="fa-solid fa-diamond-turn-right ms-1"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. FOOTER -->
+    <footer class="main-footer pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-lg-3">
+                    <h5 class="text-white">VASTECH</h5>
+                    <p class="small">Delivering precision cutting tools for a stronger tomorrow. Trusted by industries across the globe since 2000.</p>
+                </div>
+                <div class="col-lg-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled small d-flex flex-column gap-2">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5>Our Products</h5>
+                    <ul class="list-unstyled small d-flex flex-column gap-2">
+                        <li><a href="#">Broaches</a></li>
+                        <li><a href="#">Broaching Machines</a></li>
+                        <li><a href="#">Spline Rolling Racks</a></li>
+                        <li><a href="#">Aerospace Broaches</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5>Contact Us</h5>
+                    <p class="small mb-2"><i class="fa-solid fa-location-dot me-2 text-warning"></i> D189 Focal Point, Patiala, Punjab, India</p>
+                    <p class="small mb-2"><i class="fa-solid fa-phone me-2 text-warning"></i> +91 98765 43210</p>
+                    <p class="small"><i class="fa-solid fa-envelope me-2 text-warning"></i> info@vastechcuttingtools.com</p>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25">
+            <div class="d-flex justify-content-between align-items-center flex-wrap small">
+                <span>© 2026 Vastech Cutting Tools. All Rights Reserved.</span>
+                <span>Precision | Quality | Global Reach</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Dynamic Interactive Features Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Sticky Header Logic on Scroll
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 80) {
+                    header.classList.add('sticky-top-active');
+                } else {
+                    header.classList.remove('sticky-top-active');
+                }
+            });
+
+            // 2. Scroll Animation Effect using IntersectionObserver
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            animatedElements.forEach(el => observer.observe(el));
+
+            // 3. Simple Form Submit Handling
+            const form = document.getElementById('quoteForm');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you! Your quote request has been sent successfully.');
+                form.reset();
+            });
+        });
+    </script>
+</body>
+</html>

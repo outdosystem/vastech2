@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Vastech Cutting Tools - 40+ Years of Broaching Excellence</title>
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --dark-green: #032b21;
+            --primary-green: #06402B;
+            --secondary-green: #0A5A3D;
+            --accent-gold: #e6a123;
+            --light-gold: #f4be52;
+            --teal-accent: #00A88F;
+            --dark-bg: #021a14;
+            --light-bg: #F4F8F5;
+            --card-border: #E2E8F0;
+            --text-muted: #64748B;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #2D3748;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .top-bar {
+            background-color: var(--dark-green);
+            color: #ffffff;
+            font-size: 0.85rem;
+            padding: 9px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .top-bar a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .top-bar a:hover {
+            color: var(--accent-gold);
+        }
+
+        .main-navbar {
+            background: #ffffff;
+            transition: all 0.35s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1030;
+        }
+        .main-navbar.sticky-top-active {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+            animation: slideDown 0.35s ease-out;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .navbar-nav .nav-link {
+            color: #2D3748;
+            font-weight: 500;
+            padding: 0.8rem 1rem !important;
+            transition: color 0.2s ease;
+        }
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+            color: var(--primary-green);
+            font-weight: 600;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--light-gold), var(--accent-gold));
+            color: #032b21;
+            font-weight: 700;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(230, 161, 35, 0.25);
+        }
+        .btn-gold:hover {
+            background: linear-gradient(135deg, var(--accent-gold), #cd8c15);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(230, 161, 35, 0.4);
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-green) 60%, var(--secondary-green) 100%);
+            color: #ffffff;
+            position: relative;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(230, 161, 35, 0.15) 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: 0.6;
+        }
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+        }
+        .breadcrumb-item + .breadcrumb-item::before {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .section-tag {
+            color: var(--accent-gold);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+        .section-title {
+            color: var(--dark-green);
+            font-weight: 800;
+            font-size: 2.25rem;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+
+        .vm-card {
+            background: #ffffff;
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .vm-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--accent-gold);
+        }
+        .vm-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(3, 43, 33, 0.08);
+            border-color: rgba(230, 161, 35, 0.4);
+        }
+        .vm-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            background: rgba(3, 43, 33, 0.06);
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .counter-box {
+            background: linear-gradient(145deg, var(--dark-green), var(--dark-bg));
+            color: #ffffff;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-center: center;
+            position: relative;
+            border: 1px solid rgba(230, 161, 35, 0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .counter-num {
+            font-size: 2.75rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .value-card {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 1.75rem;
+            border: 1px solid #edf2f7;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .value-card:hover {
+            border-color: var(--teal-accent);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 168, 143, 0.08);
+        }
+        .value-icon-badge {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 168, 143, 0.1);
+            color: var(--teal-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+        }
+
+        .fac-nav .nav-link {
+            color: var(--dark-green);
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 12px 20px;
+            border: 1px solid #E2E8F0;
+            background: #ffffff;
+            margin-bottom: 8px;
+            text-align: left;
+            transition: all 0.25s ease;
+        }
+        .fac-nav .nav-link.active, .fac-nav .nav-link:hover {
+            background-color: var(--dark-green);
+            color: var(--accent-gold);
+            border-color: var(--dark-green);
+        }
+
+        .team-card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+        }
+        .team-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+        }
+        .team-img-wrap {
+            position: relative;
+            overflow: hidden;
+            height: 280px;
+            background-color: #e2e8f0;
+        }
+        .team-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .team-card:hover .team-img-wrap img {
+            transform: scale(1.05);
+        }
+
+        .cert-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 2rem;
+            color: #ffffff;
+            backdrop-filter: blur(5px);
+        }
+
+        .cta-banner {
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--secondary-green) 100%);
+            border-radius: 16px;
+            padding: 3.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(230, 161, 35, 0.3);
+        }
+
+        .main-footer {
+            background-color: var(--dark-bg);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        .main-footer h5 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 1.25rem;
+            position: relative;
+            padding-bottom: 8px;
+        }
+        .main-footer h5::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 32px;
+            height: 2px;
+            background-color: var(--accent-gold);
+        }
+        .main-footer a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .main-footer a:hover {
+            color: var(--accent-gold);
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+            <div class="d-flex align-items-center flex-wrap gap-3">
+                <span><i class="fa-solid fa-location-dot me-1" style="color: var(--accent-gold);"></i> D189 Focal Point, Patiala, Punjab, India</span>
+                <span><i class="fa-solid fa-envelope me-1" style="color: var(--accent-gold);"></i> info@vastechcuttingtools.com</span>
+                <span><i class="fa-solid fa-phone me-1" style="color: var(--accent-gold);"></i> +91 98765 43210</span>
+            </div>
+            <div class="d-flex align-items-center gap-3 mt-1 mt-md-0">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg main-navbar sticky-top" id="mainHeader">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <div class="px-2 py-1 rounded" style="background-color: var(--dark-green); color: var(--accent-gold);">
+                    <i class="fa-solid fa-gears fs-4"></i>
+                </div>
+                <div>
+                    <span class="fw-bold fs-4 d-block lh-1" style="color: var(--dark-green);">VASTECH</span>
+                    <small class="text-uppercase tracking-wider text-muted fw-semibold" style="font-size: 0.65rem;">Cutting Tools</small>
+                </div>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#services">Services</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Products</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="index.html#products">Broaches</a></li>
+                            <li><a class="dropdown-item" href="index.html#products">Broaching Machines</a></li>
+                            <li><a class="dropdown-item" href="index.html#products">Spline Rolling Racks</a></li>
+                            <li><a class="dropdown-item" href="index.html#products">Aerospace Broaches</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#infrastructure">Infrastructure</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#team">Our Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact Us</a></li>
+                </ul>
+                <a href="index.html#contact" class="btn btn-gold">Get a Quote <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container page-header-content text-center">
+            <span class="section-tag">ESTABLISHED IN 1984</span>
+            <h1 class="display-4 fw-extrabold text-white mb-3">About Vastech Cutting Tools</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white text-decoration-none">Home</a></li>
+                    <li class="breadcrumb-item active" style="color: var(--accent-gold);" aria-current="page">About Us</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <section class="py-5 my-4">
+        <div class="container py-3">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 animate-on-scroll">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="Vastech Factory Facility" class="img-fluid rounded-4 shadow-lg w-100">
+                        <div class="position-absolute bottom-0 end-0 bg-white p-4 rounded-4 shadow-lg m-3 d-none d-sm-block border-start border-4" style="border-color: var(--accent-gold) !important; max-width: 240px;">
+                            <div class="fw-bold fs-3" style="color: var(--dark-green);">40+ Years</div>
+                            <p class="small text-muted mb-0 fw-medium">Of Precision Engineering & Global Trust</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 animate-on-scroll">
+                    <span class="section-tag">OUR JOURNEY & HERITAGE</span>
+                    <h2 class="section-title">4 Decades of Precision Engineering Excellence</h2>
+                    <p class="text-muted leading-relaxed mb-3">
+                        Founded in 1984 in Patiala, Punjab, <strong>Vastech Cutting Tools</strong> has grown from a specialized local tool shop into a globally acknowledged manufacturer of high-precision broaches and custom broaching machinery.
+                    </p>
+                    <p class="text-muted leading-relaxed mb-4">
+                        We leverage state-of-the-art CNC grinding technology, high-grade imported speed steels (M2, M35, M42, ASP Powder Metallurgy), and rigorous quality inspection protocols to ensure every tool we produce delivers unmatched tool life and micron-level profile accuracy.
+                    </p>
+
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="p-3 rounded-3" style="background: var(--light-bg); border-left: 4px solid var(--primary-green);">
+                                <h6 class="fw-bold mb-1" style="color: var(--dark-green);">Advanced CNC Fleet</h6>
+                                <small class="text-muted">High-precision multi-axis grinding</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-3 rounded-3" style="background: var(--light-bg); border-left: 4px solid var(--teal-accent);">
+                                <h6 class="fw-bold mb-1" style="color: var(--dark-green);">Global Standards</h6>
+                                <small class="text-muted">ISO 9001 certified QA processes</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" style="background-color: var(--light-bg);">
+        <div class="container py-3">
+            <div class="row g-4 mb-5">
+                <div class="col-md-6 animate-on-scroll">
+                    <div class="vm-card">
+                        <div class="vm-icon"><i class="fa-solid fa-bullseye"></i></div>
+                        <h4 class="fw-bold mb-3" style="color: var(--dark-green);">Our Mission</h4>
+                        <p class="text-muted mb-0">To empower automotive, aerospace, defense, and industrial manufacturers worldwide by delivering cutting-edge broaching tools that minimize downtime, optimize machining cycle time, and guarantee uncompromising quality standard.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 animate-on-scroll">
+                    <div class="vm-card">
+                        <div class="vm-icon" style="color: var(--teal-accent);"><i class="fa-solid fa-eye"></i></div>
+                        <h4 class="fw-bold mb-3" style="color: var(--dark-green);">Our Vision</h4>
+                        <p class="text-muted mb-0">To be the global benchmark in broach design and tooling innovation, leading through continuous investment in smart manufacturing technology, sustainable processes, and customer-first technical support.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Counter Grid -->
+            <div class="row g-4 justify-content-center">
+                <div class="col-6 col-md-3 animate-on-scroll">
+                    <div class="counter-box">
+                        <div class="counter-num" data-target="40">0</div>
+                        <div class="fw-semibold text-uppercase small tracking-wider text-light">Years Experience</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 animate-on-scroll">
+                    <div class="counter-box">
+                        <div class="counter-num" data-target="500">0</div>
+                        <div class="fw-semibold text-uppercase small tracking-wider text-light">Global Clients</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 animate-on-scroll">
+                    <div class="counter-box">
+                        <div class="counter-num" data-target="10000">0</div>
+                        <div class="fw-semibold text-uppercase small tracking-wider text-light">Tools Delivered</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 animate-on-scroll">
+                    <div class="counter-box">
+                        <div class="counter-num" data-target="99">0</div>
+                        <div class="fw-semibold text-uppercase small tracking-wider text-light">% Precision Accuracy</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container py-3">
+            <div class="text-center mb-5 animate-on-scroll">
+                <span class="section-tag">PRINCIPLES THAT DRIVE US</span>
+                <h2 class="section-title">Our Core Values</h2>
+                <p class="text-muted mx-auto" style="max-width: 600px;">Every tool crafted at Vastech is guided by our fundamental commitment to quality and integrity.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4 col-sm-6 animate-on-scroll">
+                    <div class="value-card">
+                        <div class="value-icon-badge"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h5 class="fw-bold mb-2" style="color: var(--dark-green);">Uncompromised Quality</h5>
+                        <p class="text-muted small mb-0">Strict metallographic and profile verification at every production stage ensures zero defects.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 animate-on-scroll">
+                    <div class="value-card">
+                        <div class="value-icon-badge"><i class="fa-solid fa-microchip"></i></div>
+                        <h5 class="fw-bold mb-2" style="color: var(--dark-green);">Technological Innovation</h5>
+                        <p class="text-muted small mb-0">Adopting latest 3D tool modeling software and automated multi-axis CNC grinding capabilities.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 animate-on-scroll">
+                    <div class="value-card">
+                        <div class="value-icon-badge"><i class="fa-solid fa-handshake-angle"></i></div>
+                        <h5 class="fw-bold mb-2" style="color: var(--dark-green);">Customer First Focus</h5>
+                        <p class="text-muted small mb-0">Custom engineering solutions designed to solve complex machining challenges for our clients.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 animate-on-scroll">
+                    <div class="value-card">
+                        <div class="value-icon-badge"><i class="fa-solid fa-truck-fast"></i></div>
+                        <h5 class="fw-bold mb-2" style="color: var(--dark-green);">On-Time Delivery</h5>
+                        <p class="text-muted small mb-0">Streamlined production planning guaranteeing strict delivery timelines for all orders.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 animate-on-scroll">
+                    <div class="value-card">
+                        <div class="value-icon-badge"><i class="fa-solid fa-leaf"></i></div>
+                        <h5 class="fw-bold mb-2" style="color: var(--dark-green);">Eco-Responsibility</h5>
+                        <p class="text-muted small mb-0">Energy-efficient machinery and closed-loop oil filtration for sustainable manufacturing.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 animate-on-scroll">
+                    <div class="value-card">
+                        <div class="value-icon-badge"><i class="fa-solid fa-headset"></i></div>
+                        <h5 class="fw-bold mb-2" style="color: var(--dark-green);">Life-Cycle Support</h5>
+                        <p class="text-muted small mb-0">Re-sharpening, re-conditioning, and technical consultation throughout the tool's lifespan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" id="infrastructure" style="background-color: var(--light-bg);">
+        <div class="container py-3">
+            <div class="text-center mb-5 animate-on-scroll">
+                <span class="section-tag">STATE-OF-THE-ART PLANT</span>
+                <h2 class="section-title">Our Manufacturing Infrastructure</h2>
+                <p class="text-muted mx-auto" style="max-width: 650px;">Equipped with high-end machinery and metrology instrumentation to meet tight tolerances.</p>
+            </div>
+
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-4 animate-on-scroll">
+                    <div class="nav flex-column fac-nav" id="fac-tab" role="tablist">
+                        <button class="nav-link active d-flex align-items-center gap-3" id="tab-cnc" data-bs-toggle="pill" data-bs-target="#fac-cnc" type="button" role="tab">
+                            <i class="fa-solid fa-robot fs-5"></i>
+                            <div>
+                                <div class="fw-bold">CNC Grinding Fleet</div>
+                                <small class="opacity-75">Multi-axis broach grinders</small>
+                            </div>
+                        </button>
+                        <button class="nav-link d-flex align-items-center gap-3" id="tab-heat" data-bs-toggle="pill" data-bs-target="#fac-heat" type="button" role="tab">
+                            <i class="fa-solid fa-fire-flame-curved fs-5"></i>
+                            <div>
+                                <div class="fw-bold">Heat Treatment Shop</div>
+                                <small class="opacity-75">Vacuum furnace technology</small>
+                            </div>
+                        </button>
+                        <button class="nav-link d-flex align-items-center gap-3" id="tab-lab" data-bs-toggle="pill" data-bs-target="#fac-lab" type="button" role="tab">
+                            <i class="fa-solid fa-microscope fs-5"></i>
+                            <div>
+                                <div class="fw-bold">QA Metrology Lab</div>
+                                <small class="opacity-75">Optical projectors & CMM</small>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-lg-8 animate-on-scroll">
+                    <div class="tab-content bg-white p-4 rounded-4 shadow-sm border" id="fac-tabContent">
+                        <div class="tab-pane fade show active" id="fac-cnc" role="tabpanel">
+                            <div class="row g-4 align-items-center">
+                                <div class="col-md-6">
+                                    <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-3" alt="CNC Fleet">
+                                </div>
+                                <div class="col-md-6">
+                                    <h4 class="fw-bold mb-3" style="color: var(--dark-green);">Multi-Axis CNC Profile Grinders</h4>
+                                    <p class="text-muted small">Our shop floor features modern multi-axis CNC broach profile grinding machines equipped with automated wheel dressers, achieving tooth profile tolerances within ±0.002 mm.</p>
+                                    <ul class="list-unstyled small text-muted mb-0">
+                                        <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Helical & Straight Broach Grinding</li>
+                                        <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>In-process laser measurement systems</li>
+                                        <li><i class="fa-solid fa-check text-success me-2"></i>Sub-micron surface finish delivery</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="fac-heat" role="tabpanel">
+                            <div class="row g-4 align-items-center">
+                                <div class="col-md-6">
+                                    <img src="https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-3" alt="Heat Treatment">
+                                </div>
+                                <div class="col-md-6">
+                                    <h4 class="fw-bold mb-3" style="color: var(--dark-green);">Computerized Vacuum Heat Treatment</h4>
+                                    <p class="text-muted small">Controlled-atmosphere salt bath and vacuum tempering furnaces ensure optimal hardness (63 to 68 HRC) without surface decarburization or thermal distortion.</p>
+                                    <ul class="list-unstyled small text-muted mb-0">
+                                        <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Cryogenic treatment for micro-grain refinement</li>
+                                        <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Consistent core toughness & wear resistance</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="fac-lab" role="tabpanel">
+                            <div class="row g-4 align-items-center">
+                                <div class="col-md-6">
+                                    <img src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-3" alt="Inspection Lab">
+                                </div>
+                                <div class="col-md-6">
+                                    <h4 class="fw-bold mb-3" style="color: var(--dark-green);">Precision Quality Inspection Lab</h4>
+                                    <p class="text-muted small">Temperature-controlled metrology laboratory equipped with high-resolution profile projectors, lead & pitch measuring equipment, and hardness testers.</p>
+                                    <ul class="list-unstyled small text-muted mb-0">
+                                        <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>100% Tooth-by-tooth inspection logs</li>
+                                        <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Traceable calibration reports provided</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" id="team">
+        <div class="container py-3">
+            <div class="text-center mb-5 animate-on-scroll">
+                <span class="section-tag">MEET THE EXPERTS</span>
+                <h2 class="section-title">Leadership & Engineering Team</h2>
+                <p class="text-muted mx-auto" style="max-width: 600px;">Decades of technical leadership guiding our manufacturing precision.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4 animate-on-scroll">
+                    <div class="team-card text-center">
+                        <div class="team-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=500&q=80" alt="Managing Director">
+                        </div>
+                        <div class="p-4">
+                            <h5 class="fw-bold mb-1" style="color: var(--dark-green);">Surinder Singh</h5>
+                            <p class="text-muted small mb-3">Founder & Managing Director</p>
+                            <p class="text-muted small">40+ years in tool design and metallurgical innovation.</p>
+                            <div class="d-flex justify-content-center gap-2">
+                                <a href="#" class="btn btn-sm btn-outline-dark rounded-circle"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="#" class="btn btn-sm btn-outline-dark rounded-circle"><i class="fa-solid fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 animate-on-scroll">
+                    <div class="team-card text-center">
+                        <div class="team-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=80" alt="Head of Operations">
+                        </div>
+                        <div class="p-4">
+                            <h5 class="fw-bold mb-1" style="color: var(--dark-green);">Harpreet Kaur</h5>
+                            <p class="text-muted small mb-3">Head of Technical Operations</p>
+                            <p class="text-muted small">Specializes in CNC multi-axis tool programming & QA.</p>
+                            <div class="d-flex justify-content-center gap-2">
+                                <a href="#" class="btn btn-sm btn-outline-dark rounded-circle"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="#" class="btn btn-sm btn-outline-dark rounded-circle"><i class="fa-solid fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 animate-on-scroll">
+                    <div class="team-card text-center">
+                        <div class="team-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=500&q=80" alt="Chief Tool Engineer">
+                        </div>
+                        <div class="p-4">
+                            <h5 class="fw-bold mb-1" style="color: var(--dark-green);">Gurpreet Singh</h5>
+                            <p class="text-muted small mb-3">Chief Tooling Engineer</p>
+                            <p class="text-muted small">Expert in custom spline and aerospace broach design.</p>
+                            <div class="d-flex justify-content-center gap-2">
+                                <a href="#" class="btn btn-sm btn-outline-dark rounded-circle"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="#" class="btn btn-sm btn-outline-dark rounded-circle"><i class="fa-solid fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 text-white" style="background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-green) 100%);">
+        <div class="container py-3">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-6 animate-on-scroll">
+                    <span class="text-warning fw-bold text-uppercase fs-7">CERTIFIED EXCELLENCE</span>
+                    <h2 class="fw-bold text-white mb-3">International Quality Standards</h2>
+                    <p class="text-light opacity-80">Our facility operates under rigorous ISO 9001:2015 certified Quality Management Systems. Every tool dispatched is accompanied by thorough metallographic certificates and pitch tolerance inspection logs.</p>
+                </div>
+                <div class="col-lg-6 animate-on-scroll">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <div class="cert-card text-center">
+                                <i class="fa-solid fa-certificate fs-1 mb-3" style="color: var(--accent-gold);"></i>
+                                <h6 class="fw-bold text-white mb-1">ISO 9001:2015</h6>
+                                <small class="text-light opacity-75">Certified Quality Management</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="cert-card text-center">
+                                <i class="fa-solid fa-plane-up fs-1 mb-3" style="color: var(--teal-accent);"></i>
+                                <h6 class="fw-bold text-white mb-1">Aerospace Grade</h6>
+                                <small class="text-light opacity-75">High Precision Standards</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container py-3">
+            <div class="cta-banner text-center text-white animate-on-scroll">
+                <span class="section-tag mb-2">PARTNER WITH US</span>
+                <h2 class="display-6 fw-bold mb-3 text-white">Ready to Elevate Your Manufacturing Precision?</h2>
+                <p class="text-light opacity-90 mx-auto mb-4" style="max-width: 650px;">Consult with our expert tooling engineers today for custom broach design, quotation, or technical assistance.</p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="index.html#contact" class="btn btn-gold btn-lg fs-6">Get A Free Quote <i class="fa-solid fa-paper-plane ms-1"></i></a>
+                    <a href="tel:+919876543210" class="btn btn-outline-light btn-lg fs-6"><i class="fa-solid fa-phone me-1"></i> Call Us Directly</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-lg-3">
+                    <h5 class="text-white">VASTECH</h5>
+                    <p class="small text-muted">Delivering precision cutting tools for a stronger tomorrow. Trusted by industries across the globe since 1984.</p>
+                </div>
+                <div class="col-lg-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled small d-flex flex-column gap-2">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#products">Products</a></li>
+                        <li><a href="index.html#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5>Our Products</h5>
+                    <ul class="list-unstyled small d-flex flex-column gap-2">
+                        <li><a href="index.html#products">Broaches</a></li>
+                        <li><a href="index.html#products">Broaching Machines</a></li>
+                        <li><a href="index.html#products">Spline Rolling Racks</a></li>
+                        <li><a href="index.html#products">Aerospace Broaches</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5>Contact Us</h5>
+                    <p class="small mb-2"><i class="fa-solid fa-location-dot me-2" style="color: var(--accent-gold);"></i> D189 Focal Point, Patiala, Punjab, India</p>
+                    <p class="small mb-2"><i class="fa-solid fa-phone me-2" style="color: var(--accent-gold);"></i> +91 98765 43210</p>
+                    <p class="small"><i class="fa-solid fa-envelope me-2" style="color: var(--accent-gold);"></i> info@vastechcuttingtools.com</p>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25">
+            <div class="d-flex justify-content-between align-items-center flex-wrap small">
+                <span>© 2026 Vastech Cutting Tools. All Rights Reserved.</span>
+                <span>Precision | Quality | Global Reach</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            /* 1. Dynamic Sticky Header Shadow & Shrinking */
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 80) {
+                    header.classList.add('sticky-top-active');
+                } else {
+                    header.classList.remove('sticky-top-active');
+                }
+            });
+
+            /* 2. Scroll Reveal Intersection Observer */
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            animatedElements.forEach(el => observer.observe(el));
+
+            /* 3. Number Counter Animation on Scroll */
+            const counterElements = document.querySelectorAll('.counter-num');
+            let countersTriggered = false;
+
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !countersTriggered) {
+                        countersTriggered = true;
+                        counterElements.forEach(counter => {
+                            const target = +counter.getAttribute('data-target');
+                            const duration = 2000;
+                            const stepTime = 20;
+                            const steps = duration / stepTime;
+                            const increment = target / steps;
+                            let current = 0;
+
+                            const timer = setInterval(() => {
+                                current += increment;
+                                if (current >= target) {
+                                    counter.innerText = target + (target === 99 ? '%' : '+');
+                                    clearInterval(timer);
+                                } else {
+                                    counter.innerText = Math.ceil(current) + (target === 99 ? '%' : '+');
+                                }
+                            }, stepTime);
+                        });
+                    }
+                });
+            }, { threshold: 0.4 });
+
+            if (counterElements.length > 0) {
+                counterObserver.observe(counterElements[0].parentElement.parentElement.parentElement);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+/* Keep the brand-controlled light/dark section composition when a browser requests dark mode. */
+:root{color-scheme:light}input,select,textarea{color-scheme:dark}
